@@ -38,6 +38,26 @@ Templates act as a strong starting point while still leaving full control to the
 
 ---
 
+## README Templates
+
+Gitdocs AI includes multiple README templates designed for different project types. These templates help you start with a clear structure instead of a blank file.
+
+Available templates include:
+- Minimalist
+- Standard Open Source
+- Backend API Service
+- Data Science / ML
+- Documentation Heavy
+- Monorepo / Workspace
+- Hackathon / MVP
+
+All templates are written in clean Markdown and are fully customizable.
+
+You can explore the templates directly in the repository:
+👉 ./templates
+
+---
+
 ## GitHub README Generator Built for Real Projects
 
 Unlike static README generators that only provide predefined blocks, Gitdocs AI considers project context when generating documentation. This results in README files that feel closer to the actual codebase rather than generic placeholders.
@@ -67,6 +87,18 @@ A good README improves:
 - discoverability on GitHub
 
 Using a README generator like Gitdocs AI helps ensure documentation is not skipped or rushed, while still allowing developers to stay in control of the final output.
+
+---
+
+## Documentation
+
+Additional documentation related to README files and generators:
+
+- [What is a README?](./docs/what-is-a-readme.md)
+- [GitHub README Generator](./docs/github-readme-generator.md)
+- [README Templates](./docs/readme-templates.md)
+- [README Generator vs Manual Writing](./docs/readme-vs-manual.md)
+- [Keeping README Files Updated](./docs/keeping-readme-updated.md)
 
 ---
 
