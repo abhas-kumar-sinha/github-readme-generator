@@ -132,7 +132,7 @@ Expect:
 - ❌ No tests (who has time for that?)
 - ❌ Hardcoded API keys (we'll fix it "later")
 - ❌ TODO comments everywhere
-- ❌ Variable names like \`data2\` and \`finalFinal\`
+- ❌ Variable names like `data2` and `finalFinal`
 - ✅ But it WORKS! (mostly)
 
 ### Prerequisites
@@ -144,7 +144,7 @@ Expect:
 
 ### Installation (5 Minutes)
 
-\`\`\`bash
+```bash
 # 1. Clone this beautiful mess
 git clone https://github.com/yourteam/supernova.git
 cd supernova
@@ -155,13 +155,13 @@ npm install
 # 3. Set up environment variables
 cp .env.example .env
 # NOW EDIT .env WITH YOUR KEYS! (don't skip this)
-\`\`\`
+```
 
 ### Environment Variables You Need
 
-Create a \`.env\` file:
+Create a `.env` file:
 
-\`\`\`bash
+```bash
 # Supabase (get from https://supabase.com/dashboard)
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
@@ -171,28 +171,28 @@ VITE_OPENAI_API_KEY=sk-your-key-here
 
 # Optional but recommended
 VITE_SENTRY_DSN=your-sentry-dsn  # Catch those 3 AM bugs
-\`\`\`
+```
 
 ### Run It! 🚀
 
-\`\`\`bash
+```bash
 # Development server
 npm run dev
 
 # Should open at http://localhost:5173
 # If not, we probably hardcoded localhost:3000 somewhere 🤦‍♂️
-\`\`\`
+```
 
 ### Build for Production (if you dare)
 
-\`\`\`bash
+```bash
 npm run build
 npm run preview
 
 # Deploy to Vercel
 npm i -g vercel
 vercel --prod
-\`\`\`
+```
 
 ---
 
@@ -254,7 +254,7 @@ What we ACTUALLY built in 24 hours:
 
 ## 🏗 Architecture
 
-\`\`\`typescript
+```typescript
 ┌─────────────────┐
 │   React App     │  ← You are here
 └────────┬────────┘
@@ -269,11 +269,11 @@ What we ACTUALLY built in 24 hours:
 │ • Real   │      │ • DALL-E     │
 │   -time  │      └──────────────┘
 └──────────┘
-\`\`\`
+```
 
 ### Data Model (Simplified)
 
-\`\`\`typescript
+```typescript
 // users table
 {
   id: uuid,
@@ -309,7 +309,7 @@ What we ACTUALLY built in 24 hours:
   translated: boolean,
   created_at: timestamp
 }
-\`\`\`
+```
 
 ---
 

@@ -28,7 +28,7 @@ Explain the key value propositions:
 
 ## Installation
 
-\`\`\`bash
+```bash
 # npm
 npm install my-cool-package
 
@@ -37,13 +37,13 @@ yarn add my-cool-package
 
 # pnpm
 pnpm add my-cool-package
-\`\`\`
+```
 
 ## Quick Start
 
 Here's a 30-second introduction to get you up and running:
 
-\`\`\`typescript
+```typescript
 import { createClient } from 'my-cool-package';
 
 // Create a client instance
@@ -55,13 +55,13 @@ const client = createClient({
 // Make a request
 const data = await client.get('/users/123');
 console.log(data);
-\`\`\`
+```
 
 ## Detailed Usage
 
 ### Basic Requests
 
-\`\`\`typescript
+```typescript
 // GET request
 const user = await client.get('/users/123');
 
@@ -77,11 +77,11 @@ const updated = await client.put('/users/123', {
 
 // DELETE request
 await client.delete('/users/123');
-\`\`\`
+```
 
 ### Advanced Configuration
 
-\`\`\`typescript
+```typescript
 const client = createClient({
   baseURL: 'https://api.example.com',
   timeout: 10000,
@@ -98,11 +98,11 @@ const client = createClient({
     ttl: 60000 // 1 minute
   }
 });
-\`\`\`
+```
 
 ### Type-Safe Requests with Validation
 
-\`\`\`typescript
+```typescript
 import { z } from 'zod';
 
 // Define your schema
@@ -117,11 +117,11 @@ const user = await client.get('/users/123', {
   schema: UserSchema
 });
 // user is now typed as { id: number; name: string; email: string }
-\`\`\`
+```
 
 ### Error Handling
 
-\`\`\`typescript
+```typescript
 try {
   const data = await client.get('/users/123');
 } catch (error) {
@@ -133,45 +133,45 @@ try {
     console.error('Request failed:', error.status, error.message);
   }
 }
-\`\`\`
+```
 
 ## API Reference
 
-### \`createClient(config: ClientConfig): Client\`
+### `createClient(config: ClientConfig): Client`
 
 Creates a new HTTP client instance.
 
 **Parameters:**
-- \`config.baseURL\` (string): Base URL for all requests
-- \`config.timeout\` (number, optional): Request timeout in milliseconds (default: 30000)
-- \`config.headers\` (object, optional): Default headers for all requests
-- \`config.retry\` (object, optional): Retry configuration
-- \`config.cache\` (object, optional): Cache configuration
+- `config.baseURL` (string): Base URL for all requests
+- `config.timeout` (number, optional): Request timeout in milliseconds (default: 30000)
+- `config.headers` (object, optional): Default headers for all requests
+- `config.retry` (object, optional): Retry configuration
+- `config.cache` (object, optional): Cache configuration
 
 **Returns:** Client instance
 
-### \`client.get(path: string, options?: RequestOptions)\`
+### `client.get(path: string, options?: RequestOptions)`
 
 Performs a GET request.
 
 **Parameters:**
-- \`path\` (string): Request path (relative to baseURL)
-- \`options.schema\` (Schema, optional): Validation schema
-- \`options.headers\` (object, optional): Request-specific headers
-- \`options.params\` (object, optional): Query parameters
+- `path` (string): Request path (relative to baseURL)
+- `options.schema` (Schema, optional): Validation schema
+- `options.headers` (object, optional): Request-specific headers
+- `options.params` (object, optional): Query parameters
 
 **Returns:** Promise resolving to the response data
 
-### \`client.post(path: string, options?: RequestOptions)\`
+### `client.post(path: string, options?: RequestOptions)`
 
 Performs a POST request with the same options as GET, plus:
-- \`options.body\` (any): Request body (automatically serialized)
+- `options.body` (any): Request body (automatically serialized)
 
 ## Examples
 
 ### Real-World Example: User Management API
 
-\`\`\`typescript
+```typescript
 import { createClient } from 'my-cool-package';
 import { z } from 'zod';
 
@@ -189,7 +189,7 @@ const UsersListSchema = z.array(UserSchema);
 const api = createClient({
   baseURL: 'https://api.myapp.com',
   headers: {
-    'Authorization': \`Bearer \${process.env.API_TOKEN}\`
+    'Authorization': `Bearer \${process.env.API_TOKEN}`
   }
 });
 
@@ -211,12 +211,12 @@ async function createUser(name: string, email: string) {
 
 // Update user
 async function updateUser(id: number, updates: Partial<User>) {
-  return await api.put(\`/users/\${id}\`, {
+  return await api.put(`/users/\${id}`, {
     schema: UserSchema,
     body: updates
   });
 }
-\`\`\`
+```
 
 ## Comparison with Alternatives
 
@@ -246,7 +246,7 @@ Benchmarks on M1 Mac, Node.js 20:
 
 ### From Axios
 
-\`\`\`typescript
+```typescript
 // Before (axios)
 const response = await axios.get('https://api.example.com/users');
 const data = response.data;
@@ -254,11 +254,11 @@ const data = response.data;
 // After (my-cool-package)
 const client = createClient({ baseURL: 'https://api.example.com' });
 const data = await client.get('/users');
-\`\`\`
+```
 
 ### From Fetch
 
-\`\`\`typescript
+```typescript
 // Before (fetch)
 const response = await fetch('https://api.example.com/users');
 const data = await response.json();
@@ -266,7 +266,7 @@ const data = await response.json();
 // After (my-cool-package)
 const client = createClient({ baseURL: 'https://api.example.com' });
 const data = await client.get('/users');
-\`\`\`
+```
 
 ## Contributing
 
@@ -275,39 +275,39 @@ We welcome contributions! Here's how to get started:
 ### Development Setup
 
 1. Fork and clone the repository
-   \`\`\`bash
+   ```bash
    git clone https://github.com/yourusername/my-cool-package.git
    cd my-cool-package
-   \`\`\`
+   ```
 
 2. Install dependencies
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. Run tests
-   \`\`\`bash
+   ```bash
    npm test
-   \`\`\`
+   ```
 
 4. Start development mode
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 
 ### Pull Request Process
 
-1. Create a feature branch (\`git checkout -b feature/amazing-feature\`)
+1. Create a feature branch (`git checkout -b feature/amazing-feature`)
 2. Make your changes and add tests
-3. Ensure all tests pass (\`npm test\`)
+3. Ensure all tests pass (`npm test`)
 4. Update documentation if needed
-5. Commit your changes (\`git commit -m 'Add amazing feature'\`)
-6. Push to your fork (\`git push origin feature/amazing-feature\`)
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to your fork (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
 
 ### Code Style
 
-We use ESLint and Prettier. Run \`npm run lint\` to check your code.
+We use ESLint and Prettier. Run `npm run lint` to check your code.
 
 ## FAQ
 

@@ -119,7 +119,7 @@ MegaFramework is a **full-stack React framework** that provides everything you n
 
 The fastest way to get started:
 
-\`\`\`bash
+```bash
 # Using npx (npm 5.2+)
 npx create-mega-app my-app
 
@@ -135,32 +135,32 @@ npx create-mega-app my-app --typescript
 # With a template
 npx create-mega-app my-app --template blog
 # Available templates: blog, e-commerce, dashboard, docs, landing
-\`\`\`
+```
 
 ### Manual Installation
 
 Add to an existing project:
 
-\`\`\`bash
+```bash
 npm install megaframework react react-dom
 
 # Peer dependencies
 npm install --save-dev @types/react @types/react-dom typescript
-\`\`\`
+```
 
-Create \`mega.config.ts\`:
+Create `mega.config.ts`:
 
-\`\`\`typescript
+```typescript
 import { defineConfig } from 'megaframework';
 
 export default defineConfig({
   // Your config here
 });
-\`\`\`
+```
 
-Add scripts to \`package.json\`:
+Add scripts to `package.json`:
 
-\`\`\`json
+```json
 {
   "scripts": {
     "dev": "mega dev",
@@ -169,15 +169,15 @@ Add scripts to \`package.json\`:
     "lint": "mega lint"
   }
 }
-\`\`\`
+```
 
 ## Your First App
 
 ### 1. Create a Page
 
-Create \`pages/index.tsx\`:
+Create `pages/index.tsx`:
 
-\`\`\`typescript
+```typescript
 export default function Home() {
   return (
     <div>
@@ -186,15 +186,15 @@ export default function Home() {
     </div>
   );
 }
-\`\`\`
+```
 
 ### 2. Add Styling
 
 MegaFramework supports CSS Modules, Tailwind, Styled Components, and more.
 
-Using CSS Modules (\`index.module.css\`):
+Using CSS Modules (`index.module.css`):
 
-\`\`\`css
+```css
 .container {
   min-height: 100vh;
   padding: 4rem;
@@ -205,9 +205,9 @@ Using CSS Modules (\`index.module.css\`):
   font-size: 3rem;
   color: #0070f3;
 }
-\`\`\`
+```
 
-\`\`\`typescript
+```typescript
 import styles from './index.module.css';
 
 export default function Home() {
@@ -217,11 +217,11 @@ export default function Home() {
     </div>
   );
 }
-\`\`\`
+```
 
 ### 3. Fetch Data
 
-\`\`\`typescript
+```typescript
 import { getServerData } from 'megaframework';
 
 export default function Blog({ posts }) {
@@ -245,13 +245,13 @@ export const getData = getServerData(async () => {
   
   return { props: { posts } };
 });
-\`\`\`
+```
 
 ### 4. Add Dynamic Routes
 
-Create \`pages/blog/[slug].tsx\`:
+Create `pages/blog/[slug].tsx`:
 
-\`\`\`typescript
+```typescript
 import { useRouter } from 'megaframework/router';
 import { getServerData } from 'megaframework';
 
@@ -289,13 +289,13 @@ export const getPaths = getServerData(async () => {
     fallback: true // Enable ISR for new paths
   };
 });
-\`\`\`
+```
 
 ### 5. Create an API Route
 
-Create \`pages/api/hello.ts\`:
+Create `pages/api/hello.ts`:
 
-\`\`\`typescript
+```typescript
 import { NextApiRequest, NextApiResponse } from 'megaframework';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -304,11 +304,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     timestamp: new Date().toISOString()
   });
 }
-\`\`\`
+```
 
 Advanced API route with database:
 
-\`\`\`typescript
+```typescript
 import { db } from '@/lib/database';
 import { withAuth } from '@/middleware/auth';
 
@@ -329,13 +329,13 @@ async function handler(req, res) {
 }
 
 export default withAuth(handler); // Protected route
-\`\`\`
+```
 
 ### 6. Run Development Server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 Open http://localhost:3000 🎉
 
@@ -343,7 +343,7 @@ Open http://localhost:3000 🎉
 
 Recommended structure for a MegaFramework app:
 
-\`\`\`
+```
 my-mega-app/
 ├── pages/              # File-based routes
 │   ├── index.tsx       # / route
@@ -384,7 +384,7 @@ my-mega-app/
 ├── tsconfig.json       # TypeScript configuration
 ├── package.json
 └── .env.local          # Environment variables
-\`\`\`
+```
 
 ## Routing
 
@@ -394,17 +394,17 @@ MegaFramework uses your file system as the API for routes:
 
 | File Path | URL |
 |:----------|:----|
-| \`pages/index.tsx\` | \`/\` |
-| \`pages/about.tsx\` | \`/about\` |
-| \`pages/blog/index.tsx\` | \`/blog\` |
-| \`pages/blog/first-post.tsx\` | \`/blog/first-post\` |
-| \`pages/blog/[slug].tsx\` | \`/blog/:slug\` |
-| \`pages/posts/[...all].tsx\` | \`/posts/*\` (catch-all) |
-| \`pages/[[...slug]].tsx\` | \`/*\` (optional catch-all) |
+| `pages/index.tsx` | `/` |
+| `pages/about.tsx` | `/about` |
+| `pages/blog/index.tsx` | `/blog` |
+| `pages/blog/first-post.tsx` | `/blog/first-post` |
+| `pages/blog/[slug].tsx` | `/blog/:slug` |
+| `pages/posts/[...all].tsx` | `/posts/*` (catch-all) |
+| `pages/[[...slug]].tsx` | `/*` (optional catch-all) |
 
 ### Dynamic Routes
 
-\`\`\`typescript
+```typescript
 // pages/posts/[id].tsx
 import { useRouter } from 'megaframework/router';
 
@@ -414,11 +414,11 @@ export default function Post() {
   
   return <div>Post: {id}</div>;
 }
-\`\`\`
+```
 
 ### Nested Dynamic Routes
 
-\`\`\`typescript
+```typescript
 // pages/shop/[category]/[product].tsx
 export default function Product() {
   const router = useRouter();
@@ -427,11 +427,11 @@ export default function Product() {
   return <div>{category} - {product}</div>;
 }
 // URL: /shop/electronics/laptop
-\`\`\`
+```
 
 ### Catch-All Routes
 
-\`\`\`typescript
+```typescript
 // pages/docs/[...slug].tsx
 export default function Docs() {
   const router = useRouter();
@@ -441,11 +441,11 @@ export default function Docs() {
 }
 // URL: /docs/getting-started/installation
 // slug: ['getting-started', 'installation']
-\`\`\`
+```
 
 ### Programmatic Navigation
 
-\`\`\`typescript
+```typescript
 import { useRouter } from 'megaframework/router';
 import Link from 'megaframework/link';
 
@@ -468,7 +468,7 @@ export default function Navigation() {
     </div>
   );
 }
-\`\`\`
+```
 
 ## Data Fetching
 
@@ -478,7 +478,7 @@ MegaFramework offers multiple data fetching strategies:
 
 Fetch data on every request:
 
-\`\`\`typescript
+```typescript
 import { getServerData } from 'megaframework';
 
 export const getData = getServerData(async (context) => {
@@ -501,13 +501,13 @@ export const getData = getServerData(async (context) => {
 export default function Page({ data, userAgent }) {
   return <div>{data.title}</div>;
 }
-\`\`\`
+```
 
 ### Static Site Generation (SSG)
 
 Generate pages at build time:
 
-\`\`\`typescript
+```typescript
 import { getStaticData } from 'megaframework';
 
 export const getData = getStaticData(async () => {
@@ -518,26 +518,26 @@ export const getData = getStaticData(async () => {
     revalidate: 3600 // ISR: Regenerate every hour
   };
 });
-\`\`\`
+```
 
 ### Incremental Static Regeneration (ISR)
 
 Update static pages after deployment:
 
-\`\`\`typescript
+```typescript
 export const getData = getStaticData(async () => {
   return {
     props: { data: await fetchData() },
     revalidate: 10 // Regenerate every 10 seconds
   };
 });
-\`\`\`
+```
 
 ### Client-Side Fetching
 
 For dynamic data that doesn't need SEO:
 
-\`\`\`typescript
+```typescript
 import { useState, useEffect } from 'react';
 import { useSWR } from 'megaframework/data';
 
@@ -563,7 +563,7 @@ export default function Dashboard() {
   
   return data ? <div>{data.stats}</div> : <div>Loading...</div>;
 }
-\`\`\`
+```
 
 ## State Management
 
@@ -571,7 +571,7 @@ MegaFramework includes built-in state management:
 
 ### Local Component State
 
-\`\`\`typescript
+```typescript
 import { useState } from 'react';
 
 export default function Counter() {
@@ -584,11 +584,11 @@ export default function Counter() {
     </div>
   );
 }
-\`\`\`
+```
 
 ### Global State (Atoms)
 
-\`\`\`typescript
+```typescript
 // lib/store.ts
 import { atom, useAtom } from 'megaframework/state';
 
@@ -615,11 +615,11 @@ export default function Profile() {
     </div>
   );
 }
-\`\`\`
+```
 
 ### Derived State (Selectors)
 
-\`\`\`typescript
+```typescript
 import { selector, useValue } from 'megaframework/state';
 import { userAtom } from '@/lib/store';
 
@@ -635,13 +635,13 @@ export default function Greeting() {
   const userName = useValue(userNameSelector);
   return <h1>Hello, {userName}!</h1>;
 }
-\`\`\`
+```
 
 ## API Reference
 
 ### CLI Commands
 
-\`\`\`bash
+```bash
 # Development
 mega dev              # Start dev server (hot reload)
 mega dev --port 4000  # Custom port
@@ -657,11 +657,11 @@ mega lint             # Run ESLint
 mega lint --fix       # Auto-fix issues
 mega analyze          # Analyze bundle size
 mega info             # Show system info
-\`\`\`
+```
 
 ### Configuration API
 
-\`\`\`typescript
+```typescript
 // mega.config.ts
 import { defineConfig } from 'megaframework';
 
@@ -697,7 +697,7 @@ export default defineConfig({
     ['mega-plugin-sitemap', { domain: 'https://example.com' }]
   ]
 });
-\`\`\`
+```
 
 For the complete API reference, visit: https://docs.megaframework.com/api
 
@@ -717,7 +717,7 @@ For the complete API reference, visit: https://docs.megaframework.com/api
 
 ### Q: Does MegaFramework support TypeScript?
 
-**A**: Yes, TypeScript is a first-class citizen. All APIs are fully typed, and \`.tsx\` files work out of the box.
+**A**: Yes, TypeScript is a first-class citizen. All APIs are fully typed, and `.tsx` files work out of the box.
 
 ### Q: How do I deploy a MegaFramework app?
 

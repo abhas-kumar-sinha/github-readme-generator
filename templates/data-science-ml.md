@@ -86,32 +86,32 @@ The dataset contains customer information for a telecommunications company:
 ### Features
 
 #### Demographic Features
-- \`gender\`: Customer gender (Male, Female)
-- \`SeniorCitizen\`: Whether customer is 65+ (0, 1)
-- \`Partner\`: Whether customer has a partner (Yes, No)
-- \`Dependents\`: Whether customer has dependents (Yes, No)
+- `gender`: Customer gender (Male, Female)
+- `SeniorCitizen`: Whether customer is 65+ (0, 1)
+- `Partner`: Whether customer has a partner (Yes, No)
+- `Dependents`: Whether customer has dependents (Yes, No)
 
 #### Service Features
-- \`tenure\`: Number of months as customer (0-72)
-- \`PhoneService\`: Phone service subscription (Yes, No)
-- \`MultipleLines\`: Multiple phone lines (Yes, No, No phone service)
-- \`InternetService\`: Type of internet (DSL, Fiber optic, No)
-- \`OnlineSecurity\`: Online security add-on (Yes, No, No internet service)
-- \`OnlineBackup\`: Online backup add-on (Yes, No, No internet service)
-- \`DeviceProtection\`: Device protection add-on (Yes, No, No internet service)
-- \`TechSupport\`: Tech support add-on (Yes, No, No internet service)
-- \`StreamingTV\`: TV streaming service (Yes, No, No internet service)
-- \`StreamingMovies\`: Movie streaming service (Yes, No, No internet service)
+- `tenure`: Number of months as customer (0-72)
+- `PhoneService`: Phone service subscription (Yes, No)
+- `MultipleLines`: Multiple phone lines (Yes, No, No phone service)
+- `InternetService`: Type of internet (DSL, Fiber optic, No)
+- `OnlineSecurity`: Online security add-on (Yes, No, No internet service)
+- `OnlineBackup`: Online backup add-on (Yes, No, No internet service)
+- `DeviceProtection`: Device protection add-on (Yes, No, No internet service)
+- `TechSupport`: Tech support add-on (Yes, No, No internet service)
+- `StreamingTV`: TV streaming service (Yes, No, No internet service)
+- `StreamingMovies`: Movie streaming service (Yes, No, No internet service)
 
 #### Account Features
-- \`Contract\`: Contract type (Month-to-month, One year, Two year)
-- \`PaperlessBilling\`: Paperless billing (Yes, No)
-- \`PaymentMethod\`: Payment method (Electronic check, Mailed check, Bank transfer, Credit card)
-- \`MonthlyCharges\`: Current monthly charge ($18.25 - $118.75)
-- \`TotalCharges\`: Total amount charged to date
+- `Contract`: Contract type (Month-to-month, One year, Two year)
+- `PaperlessBilling`: Paperless billing (Yes, No)
+- `PaymentMethod`: Payment method (Electronic check, Mailed check, Bank transfer, Credit card)
+- `MonthlyCharges`: Current monthly charge ($18.25 - $118.75)
+- `TotalCharges`: Total amount charged to date
 
 #### Target Variable
-- \`Churn\`: Whether customer churned (Yes, No)
+- `Churn`: Whether customer churned (Yes, No)
 
 ### Data Quality
 
@@ -124,7 +124,7 @@ The dataset contains customer information for a telecommunications company:
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 customer-churn-prediction/
 │
 ├── data/
@@ -192,7 +192,7 @@ customer-churn-prediction/
 ├── requirements.txt             # Python dependencies
 ├── README.md
 └── LICENSE
-\`\`\`
+```
 
 ## 🛠 Installation
 
@@ -205,7 +205,7 @@ customer-churn-prediction/
 
 ### Option 1: Conda Environment (Recommended)
 
-\`\`\`bash
+```bash
 # Clone the repository
 git clone https://github.com/username/customer-churn-prediction.git
 cd customer-churn-prediction
@@ -218,11 +218,11 @@ conda activate churn-analysis
 
 # Verify installation
 python -c "import sklearn, xgboost, lightgbm; print('All packages installed!')"
-\`\`\`
+```
 
 ### Option 2: Virtual Environment (venv)
 
-\`\`\`bash
+```bash
 # Clone the repository
 git clone https://github.com/username/customer-churn-prediction.git
 cd customer-churn-prediction
@@ -238,13 +238,13 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### Dependencies
 
 Key packages (full list in requirements.txt):
 
-\`\`\`txt
+```txt
 pandas==2.0.3
 numpy==1.24.3
 scikit-learn==1.3.0
@@ -260,13 +260,13 @@ imbalanced-learn==0.11.0
 mlflow==2.5.0
 fastapi==0.100.0
 uvicorn==0.23.0
-\`\`\`
+```
 
 ## 🚀 Usage
 
 ### 1. Download the Dataset
 
-\`\`\`bash
+```bash
 # Create data directory
 mkdir -p data/raw
 
@@ -275,21 +275,21 @@ kaggle datasets download -d blastchar/telco-customer-churn -p data/raw
 
 # Unzip
 unzip data/raw/telco-customer-churn.zip -d data/raw
-\`\`\`
+```
 
 ### 2. Run Notebooks in Order
 
-\`\`\`bash
+```bash
 # Start Jupyter Lab
 jupyter lab
 
 # Navigate to notebooks/ folder and run in sequence:
 # 01_EDA.ipynb → 02_Data_Cleaning.ipynb → ... → 07_Model_Interpretation.ipynb
-\`\`\`
+```
 
 ### 3. Train Models via Scripts
 
-\`\`\`bash
+```bash
 # Preprocess data
 python src/data/preprocess.py --input data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv --output data/processed/
 
@@ -298,18 +298,18 @@ python src/models/train.py --model random_forest --data data/processed/train.csv
 
 # Train all models with hyperparameter tuning
 python src/models/train.py --model all --tune --cv 5
-\`\`\`
+```
 
 ### 4. Make Predictions
 
-\`\`\`bash
+```bash
 # Predict on new data
 python src/models/predict.py --model models/final_model.pkl --input data/new_customers.csv --output predictions.csv
-\`\`\`
+```
 
 ### 5. Run API Server (for production predictions)
 
-\`\`\`bash
+```bash
 cd api
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
@@ -327,7 +327,7 @@ curl -X POST "http://localhost:8000/predict" \\
     "Contract": "Month-to-month",
     "MonthlyCharges": 70.5
   }'
-\`\`\`
+```
 
 ## 🔬 Methodology
 
@@ -442,7 +442,7 @@ curl -X POST "http://localhost:8000/predict" \\
 
 ### Detailed XGBoost Results
 
-\`\`\`
+```
 Classification Report:
               precision    recall  f1-score   support
 
@@ -455,16 +455,16 @@ weighted avg       0.87      0.86      0.86      1409
 
 ROC-AUC Score: 0.9037
 PR-AUC Score: 0.8291
-\`\`\`
+```
 
 ### Confusion Matrix (Test Set)
 
-\`\`\`
+```
                  Predicted
                  Not Churn  Churn
 Actual Not Churn    987      51
        Churn        100     271
-\`\`\`
+```
 
 **Interpretation**:
 - **True Negatives**: 987 (correctly identified non-churners)
@@ -502,14 +502,14 @@ Based on model predictions on 1,000 customers:
 
 A FastAPI service for real-time churn predictions:
 
-\`\`\`bash
+```bash
 # Start the API server
 cd api
 uvicorn main:app --reload --port 8000
 
 # Server runs at: http://localhost:8000
 # Docs available at: http://localhost:8000/docs
-\`\`\`
+```
 
 **API Endpoints**:
 
@@ -520,7 +520,7 @@ uvicorn main:app --reload --port 8000
 
 **Example Request**:
 
-\`\`\`python
+```python
 import requests
 
 customer_data = {
@@ -552,11 +552,11 @@ response = requests.post(
 
 print(response.json())
 # Output: {"churn_probability": 0.78, "prediction": "Churn", "risk_level": "High"}
-\`\`\`
+```
 
 ### Docker Deployment
 
-\`\`\`bash
+```bash
 # Build image
 docker build -t churn-prediction-api:v1 .
 
@@ -565,7 +565,7 @@ docker run -d -p 8000:8000 churn-prediction-api:v1
 
 # Test
 curl http://localhost:8000/health
-\`\`\`
+```
 
 ### Production Considerations
 
@@ -599,7 +599,7 @@ For production deployment:
 
 ### 02_Data_Cleaning.ipynb - Data Preprocessing
 **Duration**: ~20 minutes  
-**Output**: Cleaned dataset saved to \`data/processed/\`
+**Output**: Cleaned dataset saved to `data/processed/`
 
 **Cleaning Steps**:
 1. Handle missing TotalCharges (11 rows)
@@ -613,12 +613,12 @@ For production deployment:
 **Output**: 6 new engineered features
 
 **Features Created**:
-- \`tenure_group\`: Binned tenure categories
-- \`avg_monthly_charges\`: TotalCharges / tenure
-- \`service_count\`: Number of subscribed services
-- \`has_premium\`: Flag for premium services
-- \`contract_payment\`: Interaction feature
-- \`charge_ratio\`: MonthlyCharges / median ratio
+- `tenure_group`: Binned tenure categories
+- `avg_monthly_charges`: TotalCharges / tenure
+- `service_count`: Number of subscribed services
+- `has_premium`: Flag for premium services
+- `contract_payment`: Interaction feature
+- `charge_ratio`: MonthlyCharges / median ratio
 
 ### 04_Baseline_Models.ipynb - Initial Models
 **Duration**: ~15 minutes  
@@ -740,32 +740,32 @@ Trains and tunes:
 ### Common Issues
 
 **Issue**: "TotalCharges cannot be converted to float"
-\`\`\`python
+```python
 # Solution: Convert with error handling
 df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
 df['TotalCharges'].fillna(df['TotalCharges'].median(), inplace=True)
-\`\`\`
+```
 
 **Issue**: ImportError with XGBoost
-\`\`\`bash
+```bash
 # Solution: Install with conda instead of pip
 conda install -c conda-forge xgboost
-\`\`\`
+```
 
 **Issue**: Kernel dying during model training
-\`\`\`python
+```python
 # Solution: Reduce hyperparameter search space
 param_grid = {
     'n_estimators': [50, 100],  # Reduced from [50, 100, 200]
     'max_depth': [3, 5],        # Reduced from [3, 5, 7, 10]
 }
-\`\`\`
+```
 
 **Issue**: API returns 422 validation error
-\`\`\`bash
+```bash
 # Solution: Check that all required fields are included
 # See api/schemas.py for complete field list
-\`\`\`
+```
 
 ## 📚 Additional Resources
 
@@ -799,7 +799,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 If you use this project in your research or work, please cite:
 
-\`\`\`bibtex
+```bibtex
 @misc{churn_prediction_2024,
   author = {Your Name},
   title = {Customer Churn Prediction using Machine Learning},
@@ -807,7 +807,7 @@ If you use this project in your research or work, please cite:
   publisher = {GitHub},
   url = {https://github.com/username/customer-churn-prediction}
 }
-\`\`\`
+```
 
 ## 📧 Contact
 

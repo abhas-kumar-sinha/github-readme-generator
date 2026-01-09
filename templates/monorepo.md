@@ -33,7 +33,7 @@ This repository is the single source of truth for ACME Corp's web ecosystem. It 
 
 ## 🏗 Monorepo Structure
 
-\`\`\`text
+```text
 acme-monorepo/
 │
 ├── apps/                        # Production applications
@@ -130,7 +130,7 @@ acme-monorepo/
 ├── .eslintrc.js                 # Root ESLint config
 ├── .prettierrc                  # Prettier config
 └── README.md
-\`\`\`
+```
 
 ## 🚀 Quick Start
 
@@ -139,12 +139,12 @@ acme-monorepo/
 Ensure you have the following installed:
 
 - **Node.js**: v20.0.0 or higher ([Download](https://nodejs.org/))
-- **pnpm**: v8.0.0 or higher (\`npm install -g pnpm\`)
+- **pnpm**: v8.0.0 or higher (`npm install -g pnpm`)
 - **Git**: Latest version
 
 ### Initial Setup
 
-\`\`\`bash
+```bash
 # 1. Clone the repository
 git clone https://github.com/acme/monorepo.git
 cd monorepo
@@ -157,7 +157,7 @@ pnpm build
 
 # 4. Run development servers for all apps
 pnpm dev
-\`\`\`
+```
 
 That's it! All apps should now be running:
 
@@ -171,7 +171,7 @@ That's it! All apps should now be running:
 
 Copy environment files for each app:
 
-\`\`\`bash
+```bash
 # Marketing site
 cp apps/web/.env.example apps/web/.env.local
 
@@ -180,13 +180,13 @@ cp apps/dashboard/.env.example apps/dashboard/.env.local
 
 # API
 cp apps/mobile-api/.env.example apps/mobile-api/.env
-\`\`\`
+```
 
 Fill in your environment variables (see individual app READMEs for details).
 
 ## 📦 Applications
 
-### 1. Marketing Website (\`apps/web\`)
+### 1. Marketing Website (`apps/web`)
 
 **Tech Stack**: Next.js 14, React 18, Tailwind CSS  
 **URL**: https://acme.com  
@@ -200,14 +200,14 @@ Fill in your environment variables (see individual app READMEs for details).
 - Analytics with Vercel Analytics
 
 **Local Development**:
-\`\`\`bash
+```bash
 cd apps/web
 pnpm dev
-\`\`\`
+```
 
 [📖 Full README](./apps/web/README.md)
 
-### 2. Dashboard (\`apps/dashboard\`)
+### 2. Dashboard (`apps/dashboard`)
 
 **Tech Stack**: React 18, Vite, TanStack Query, Zustand  
 **URL**: https://app.acme.com  
@@ -221,14 +221,14 @@ pnpm dev
 - Role-based access control (RBAC)
 
 **Local Development**:
-\`\`\`bash
+```bash
 cd apps/dashboard
 pnpm dev
-\`\`\`
+```
 
 [📖 Full README](./apps/dashboard/README.md)
 
-### 3. Documentation Site (\`apps/docs\`)
+### 3. Documentation Site (`apps/docs`)
 
 **Tech Stack**: Docusaurus 3, React, Algolia  
 **URL**: https://docs.acme.com  
@@ -242,14 +242,14 @@ pnpm dev
 - Dark mode support
 
 **Local Development**:
-\`\`\`bash
+```bash
 cd apps/docs
 pnpm dev
-\`\`\`
+```
 
 [📖 Full README](./apps/docs/README.md)
 
-### 4. Mobile API (\`apps/mobile-api\`)
+### 4. Mobile API (`apps/mobile-api`)
 
 **Tech Stack**: Node.js, Express, PostgreSQL, Redis  
 **URL**: https://api.acme.com  
@@ -263,14 +263,14 @@ pnpm dev
 - Monitoring with Sentry
 
 **Local Development**:
-\`\`\`bash
+```bash
 cd apps/mobile-api
 pnpm dev
-\`\`\`
+```
 
 [📖 Full README](./apps/mobile-api/README.md)
 
-### 5. Admin Panel (\`apps/admin\`)
+### 5. Admin Panel (`apps/admin`)
 
 **Tech Stack**: React, Material-UI, React Admin  
 **URL**: https://admin.acme.com (internal)  
@@ -283,16 +283,16 @@ pnpm dev
 - System health monitoring
 
 **Local Development**:
-\`\`\`bash
+```bash
 cd apps/admin
 pnpm dev
-\`\`\`
+```
 
 [📖 Full README](./apps/admin/README.md)
 
 ## 📦 Shared Packages
 
-### UI Component Library (\`packages/ui\`)
+### UI Component Library (`packages/ui`)
 
 Shared React components used across all applications.
 
@@ -304,7 +304,7 @@ Shared React components used across all applications.
 - Navigation (Tabs, Breadcrumb, Pagination)
 
 **Usage**:
-\`\`\`typescript
+```typescript
 import { Button, Card, Modal } from '@acme/ui';
 
 export default function MyComponent() {
@@ -316,36 +316,36 @@ export default function MyComponent() {
     </Card>
   );
 }
-\`\`\`
+```
 
-**Storybook**: http://localhost:6006 (\`pnpm storybook\`)
+**Storybook**: http://localhost:6006 (`pnpm storybook`)
 
 [📖 Full Docs](./packages/ui/README.md) | [🎨 Storybook](https://storybook.acme.com)
 
-### Utilities (\`packages/utils\`)
+### Utilities (`packages/utils`)
 
 Shared utility functions and helpers.
 
 **Categories**:
-- **Date/Time**: \`formatDate\`, \`parseDate\`, \`timeAgo\`
-- **String**: \`truncate\`, \`slugify\`, \`capitalize\`
-- **Validation**: \`isEmail\`, \`isURL\`, \`isPhoneNumber\`
-- **Array**: \`groupBy\`, \`unique\`, \`sortBy\`
-- **Object**: \`deepMerge\`, \`pick\`, \`omit\`
-- **Number**: \`formatCurrency\`, \`formatNumber\`, \`clamp\`
+- **Date/Time**: `formatDate`, `parseDate`, `timeAgo`
+- **String**: `truncate`, `slugify`, `capitalize`
+- **Validation**: `isEmail`, `isURL`, `isPhoneNumber`
+- **Array**: `groupBy`, `unique`, `sortBy`
+- **Object**: `deepMerge`, `pick`, `omit`
+- **Number**: `formatCurrency`, `formatNumber`, `clamp`
 
 **Usage**:
-\`\`\`typescript
+```typescript
 import { formatDate, truncate, isEmail } from '@acme/utils';
 
 const date = formatDate(new Date(), 'MMM DD, YYYY');
 const excerpt = truncate(longText, 100);
 const valid = isEmail('user@example.com');
-\`\`\`
+```
 
 [📖 Full Docs](./packages/utils/README.md)
 
-### API Client (\`packages/api-client\`)
+### API Client (`packages/api-client`)
 
 Type-safe API client for communicating with backend services.
 
@@ -356,7 +356,7 @@ Type-safe API client for communicating with backend services.
 - Retry logic and error handling
 
 **Usage**:
-\`\`\`typescript
+```typescript
 import { createClient } from '@acme/api-client';
 
 const client = createClient({
@@ -367,11 +367,11 @@ const client = createClient({
 // Fully typed requests
 const user = await client.users.get('123');
 const posts = await client.posts.list({ page: 1, limit: 10 });
-\`\`\`
+```
 
 [📖 Full Docs](./packages/api-client/README.md)
 
-### Database (\`packages/database\`)
+### Database (`packages/database`)
 
 Prisma database client shared across backend services.
 
@@ -379,52 +379,52 @@ Prisma database client shared across backend services.
 **Models**: Users, Organizations, Posts, Comments, etc.
 
 **Usage**:
-\`\`\`typescript
+```typescript
 import { prisma } from '@acme/database';
 
 const users = await prisma.user.findMany({
   where: { active: true },
   include: { posts: true }
 });
-\`\`\`
+```
 
 **Migrations**:
-\`\`\`bash
+```bash
 cd packages/database
 pnpm prisma migrate dev
 pnpm prisma generate
-\`\`\`
+```
 
 [📖 Full Docs](./packages/database/README.md)
 
 ### Configuration Packages
 
-#### ESLint Config (\`packages/eslint-config\`)
-\`\`\`json
+#### ESLint Config (`packages/eslint-config`)
+```json
 {
   "extends": ["@acme/eslint-config/react"]
 }
-\`\`\`
+```
 
-#### TypeScript Config (\`packages/tsconfig\`)
-\`\`\`json
+#### TypeScript Config (`packages/tsconfig`)
+```json
 {
   "extends": "@acme/tsconfig/react.json"
 }
-\`\`\`
+```
 
-#### Tailwind Config (\`packages/tailwind-config\`)
-\`\`\`javascript
+#### Tailwind Config (`packages/tailwind-config`)
+```javascript
 module.exports = {
   presets: [require('@acme/tailwind-config')],
 }
-\`\`\`
+```
 
 ## 🛠 Development Workflows
 
 ### Working on a Single App
 
-\`\`\`bash
+```bash
 # Run only the dashboard
 pnpm --filter dashboard dev
 
@@ -433,31 +433,31 @@ pnpm --filter dashboard... dev
 
 # Build only the marketing site
 pnpm --filter web build
-\`\`\`
+```
 
 ### Working on Multiple Apps
 
-\`\`\`bash
+```bash
 # Run specific apps
 pnpm --filter "{web,dashboard}" dev
 
 # Run all apps except docs
 pnpm --filter "!docs" dev
-\`\`\`
+```
 
 ### Working on Shared Packages
 
-\`\`\`bash
+```bash
 # Watch mode for UI package
 cd packages/ui
 pnpm dev  # Rebuilds on file changes
 
 # Apps importing @acme/ui will auto-reload
-\`\`\`
+```
 
 ### Adding Dependencies
 
-\`\`\`bash
+```bash
 # Add to a specific app
 pnpm --filter web add lodash
 
@@ -466,11 +466,11 @@ pnpm --filter @acme/utils add date-fns
 
 # Add to root (dev dependencies)
 pnpm add -D -w prettier
-\`\`\`
+```
 
 ### Creating a New App
 
-\`\`\`bash
+```bash
 # Use the generator
 pnpm generate:app
 
@@ -479,11 +479,11 @@ mkdir apps/new-app
 cd apps/new-app
 pnpm init
 # Add to pnpm-workspace.yaml
-\`\`\`
+```
 
 ### Creating a New Package
 
-\`\`\`bash
+```bash
 # Use the generator
 pnpm generate:package
 
@@ -491,7 +491,7 @@ pnpm generate:package
 mkdir packages/new-package
 cd packages/new-package
 pnpm init
-\`\`\`
+```
 
 ## 🏗 Build System (Turborepo)
 
@@ -507,7 +507,7 @@ Turborepo intelligently caches build outputs and only rebuilds what changed.
 
 ### Turbo Configuration
 
-\`\`\`json
+```json
 // turbo.json
 {
   "pipeline": {
@@ -527,11 +527,11 @@ Turborepo intelligently caches build outputs and only rebuilds what changed.
     }
   }
 }
-\`\`\`
+```
 
 ### Common Turbo Commands
 
-\`\`\`bash
+```bash
 # Build everything
 pnpm build
 
@@ -549,14 +549,14 @@ pnpm turbo run build --graph
 
 # Clear cache
 pnpm turbo prune
-\`\`\`
+```
 
 ### Pipeline Visualization
 
-\`\`\`bash
+```bash
 # Generate visual graph
 pnpm turbo run build --graph=graph.html
-\`\`\`
+```
 
 Opens an interactive graph showing:
 - Build dependencies
@@ -578,7 +578,7 @@ Opens an interactive graph showing:
 
 ### Running Tests
 
-\`\`\`bash
+```bash
 # Run all tests
 pnpm test
 
@@ -593,11 +593,11 @@ pnpm test:e2e
 
 # Generate coverage report
 pnpm test:coverage
-\`\`\`
+```
 
 ### Writing Tests
 
-\`\`\`typescript
+```typescript
 // packages/ui/src/Button.test.tsx
 import { render, screen } from '@testing-library/react';
 import { Button } from './Button';
@@ -615,7 +615,7 @@ describe('Button', () => {
     expect(handleClick).toHaveBeenCalledOnce();
   });
 });
-\`\`\`
+```
 
 ## 🚀 Deployment
 
@@ -641,7 +641,7 @@ describe('Button', () => {
 
 ### Manual Deployment
 
-\`\`\`bash
+```bash
 # Deploy all apps
 pnpm deploy
 
@@ -653,13 +653,13 @@ pnpm deploy:staging
 
 # Deploy to production (requires approval)
 pnpm deploy:production
-\`\`\`
+```
 
 ### Environment Variables
 
 Each app has its own environment variables:
 
-\`\`\`bash
+```bash
 # Marketing site
 apps/web/.env.local
 
@@ -668,9 +668,9 @@ apps/dashboard/.env.local
 
 # API
 apps/mobile-api/.env
-\`\`\`
+```
 
-**Never commit \`.env\` files!** Use Vercel/Railway secret management.
+**Never commit `.env` files!** Use Vercel/Railway secret management.
 
 ## 📊 Monitoring & Observability
 
@@ -684,7 +684,7 @@ apps/mobile-api/.env
 
 ### Health Checks
 
-\`\`\`bash
+```bash
 # Check all services
 pnpm health:check
 
@@ -692,45 +692,45 @@ pnpm health:check
 # ✅ web: https://acme.com (200 OK)
 # ✅ dashboard: https://app.acme.com (200 OK)
 # ✅ api: https://api.acme.com/health (200 OK)
-\`\`\`
+```
 
 ## 🔧 Troubleshooting
 
 ### Common Issues
 
 **Problem**: "Cannot find module '@acme/ui'"
-\`\`\`bash
+```bash
 # Solution: Build packages first
 pnpm build
 # Or run in watch mode
 cd packages/ui && pnpm dev
-\`\`\`
+```
 
 **Problem**: "Port 3000 already in use"
-\`\`\`bash
+```bash
 # Solution: Kill process or use different port
 pnpm --filter web dev -- --port 3001
-\`\`\`
+```
 
 **Problem**: "Out of memory during build"
-\`\`\`bash
+```bash
 # Solution: Increase Node memory
 export NODE_OPTIONS="--max-old-space-size=4096"
 pnpm build
-\`\`\`
+```
 
 **Problem**: "Changes in package not reflecting in app"
-\`\`\`bash
+```bash
 # Solution: Clear Turborepo cache
 pnpm turbo prune
 pnpm build
-\`\`\`
+```
 
 ### Getting Help
 
 1. Check the [internal wiki](https://wiki.acme.com)
 2. Ask in #eng-help Slack channel
-3. Open an issue with \`[HELP]\` prefix
+3. Open an issue with `[HELP]` prefix
 4. Ping @platform-team for urgent issues
 
 ## 📚 Documentation
@@ -745,19 +745,19 @@ pnpm build
 
 ### Development Process
 
-1. **Create a branch**: \`git checkout -b feature/amazing-feature\`
+1. **Create a branch**: `git checkout -b feature/amazing-feature`
 2. **Make changes**: Follow our [coding standards](./docs/CODING_STANDARDS.md)
 3. **Write tests**: Maintain or improve coverage
-4. **Run checks**: \`pnpm lint && pnpm test && pnpm build\`
+4. **Run checks**: `pnpm lint && pnpm test && pnpm build`
 5. **Commit**: Use [conventional commits](https://conventionalcommits.org)
-6. **Push**: \`git push origin feature/amazing-feature\`
+6. **Push**: `git push origin feature/amazing-feature`
 7. **Open PR**: Fill out the PR template
 8. **Get reviews**: At least 2 approvals required
 9. **Merge**: Squash and merge to main
 
 ### Commit Convention
 
-\`\`\`bash
+```bash
 # Format: type(scope): message
 
 feat(dashboard): add user analytics chart
@@ -765,7 +765,7 @@ fix(ui): resolve button hover state bug
 docs(readme): update installation steps
 chore(deps): upgrade react to v18.3
 test(utils): add date formatting tests
-\`\`\`
+```
 
 ### Code Review Guidelines
 
@@ -785,7 +785,7 @@ test(utils): add date formatting tests
 
 ### Dependencies
 
-\`\`\`bash
+```bash
 # Check for outdated packages
 pnpm outdated
 
@@ -794,7 +794,7 @@ pnpm update -r
 
 # Check for vulnerabilities
 pnpm audit
-\`\`\`
+```
 
 ### Bundle Sizes
 
@@ -830,19 +830,19 @@ Unauthorized copying, distribution, or use is strictly prohibited.
 
 **Marketing** (@marketing-team)
 - Owner: @emily
-- Apps: \`web\`, \`docs\`
+- Apps: `web`, `docs`
 
 **Product** (@product-team)
 - Owner: @frank
-- Apps: \`dashboard\`
+- Apps: `dashboard`
 
 **API** (@api-team)
 - Owner: @grace
-- Apps: \`mobile-api\`
+- Apps: `mobile-api`
 
 **Internal Tools** (@tools-team)
 - Owner: @henry
-- Apps: \`admin\`
+- Apps: `admin`
 
 ## 🔗 Useful Links
 

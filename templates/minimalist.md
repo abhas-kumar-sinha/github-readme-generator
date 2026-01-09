@@ -8,30 +8,30 @@ A short paragraph explaining the purpose of this project. Keep it focused and cl
 
 ## Installation
 
-\`\`\`bash
+```bash
 # If it's a package
 npm install your-package-name
 
 # Or if it's a script
 git clone https://github.com/username/repo.git
 cd repo
-\`\`\`
+```
 
 ## Usage
 
 ### Basic Example
 
-\`\`\`bash
+```bash
 # Command-line usage
 node script.js input.txt
 
 # Or as a module
 npm run start
-\`\`\`
+```
 
 ### Example with Options
 
-\`\`\`javascript
+```javascript
 const myTool = require('./tool');
 
 // Simple usage
@@ -39,7 +39,7 @@ myTool.process('input.txt');
 
 // With configuration
 myTool.process('input.txt', { format: 'json', pretty: true });
-\`\`\`
+```
 
 ## Configuration
 
@@ -51,13 +51,13 @@ If there are any simple settings, list them here:
 
 ### Configuration File Example
 
-\`\`\`json
+```json
 {
   "optionA": true,
   "optionB": "value",
   "timeout": 5000
 }
-\`\`\`
+```
 
 ## Common Use Cases
 

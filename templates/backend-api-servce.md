@@ -18,7 +18,7 @@ This is a comprehensive backend API that handles:
 
 ## 🏗 Architecture
 
-\`\`\`
+```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐
 │   Client    │────▶│  API Server  │────▶│  Database   │
 │  (React)    │     │  (Node.js)   │     │ (Postgres)  │
@@ -27,7 +27,7 @@ This is a comprehensive backend API that handles:
                             ├────▶ Redis Cache
                             ├────▶ S3 Storage
                             └────▶ Queue (Bull)
-\`\`\`
+```
 
 ## 🛠 Tech Stack
 
@@ -71,52 +71,52 @@ Optional:
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/yourorg/api-service.git
 cd api-service
-\`\`\`
+```
 
 ### 2. Environment Configuration
 
 Copy the example environment file and configure it:
 
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 
-Edit \`.env\` with your settings (see [Environment Variables](#environment-variables) section).
+Edit `.env` with your settings (see [Environment Variables](#environment-variables) section).
 
 ### 3. Start Dependencies with Docker
 
-\`\`\`bash
+```bash
 # Start PostgreSQL and Redis
 docker-compose up -d postgres redis
 
 # Verify services are running
 docker-compose ps
-\`\`\`
+```
 
 ### 4. Install Dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 5. Database Setup
 
-\`\`\`bash
+```bash
 # Run migrations
 npm run migrate
 
 # Seed database with sample data
 npm run seed
-\`\`\`
+```
 
 ### 6. Start Development Server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 API should now be running at http://localhost:3000
 
@@ -124,10 +124,10 @@ Visit http://localhost:3000/docs for interactive API documentation.
 
 ## 🔐 Environment Variables
 
-Create a \`.env\` file in the root directory:
+Create a `.env` file in the root directory:
 
 ### Server Configuration
-\`\`\`bash
+```bash
 # Server
 NODE_ENV=development
 PORT=3000
@@ -136,10 +136,10 @@ API_VERSION=v1
 # Logging
 LOG_LEVEL=info
 LOG_FORMAT=json
-\`\`\`
+```
 
 ### Database
-\`\`\`bash
+```bash
 # PostgreSQL
 DATABASE_URL=postgresql://user:password@localhost:5432/mydb?schema=public
 DB_HOST=localhost
@@ -151,10 +151,10 @@ DB_PASSWORD=supersecretpassword
 # Connection Pool
 DB_POOL_MIN=2
 DB_POOL_MAX=10
-\`\`\`
+```
 
 ### Authentication
-\`\`\`bash
+```bash
 # JWT Configuration
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 JWT_EXPIRY=7d
@@ -165,19 +165,19 @@ GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 GITHUB_CLIENT_ID=your-github-client-id
 GITHUB_CLIENT_SECRET=your-github-client-secret
-\`\`\`
+```
 
 ### Redis
-\`\`\`bash
+```bash
 REDIS_URL=redis://localhost:6379
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_PASSWORD=
 REDIS_TLS=false
-\`\`\`
+```
 
 ### External Services
-\`\`\`bash
+```bash
 # AWS (for file uploads)
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=your-access-key
@@ -191,21 +191,21 @@ FROM_EMAIL=noreply@example.com
 # Stripe (for payments)
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-\`\`\`
+```
 
 ### Security
-\`\`\`bash
+```bash
 # Rate Limiting
 RATE_LIMIT_WINDOW=15m
 RATE_LIMIT_MAX_REQUESTS=100
 
 # CORS
 CORS_ORIGIN=http://localhost:3001,https://app.example.com
-\`\`\`
+```
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 api-service/
 ├── src/
 │   ├── controllers/       # Request handlers
@@ -233,7 +233,7 @@ api-service/
 ├── .env.example
 ├── package.json
 └── tsconfig.json
-\`\`\`
+```
 
 ## 🌐 API Endpoints
 
@@ -241,56 +241,56 @@ api-service/
 
 | Method | Endpoint              | Description                    | Auth Required |
 |:-------|:---------------------|:-------------------------------|:--------------|
-| POST   | \`/api/v1/auth/register\` | Register new user            | No            |
-| POST   | \`/api/v1/auth/login\`    | User login                   | No            |
-| POST   | \`/api/v1/auth/logout\`   | User logout                  | Yes           |
-| POST   | \`/api/v1/auth/refresh\`  | Refresh access token         | No            |
-| POST   | \`/api/v1/auth/forgot-password\` | Request password reset | No    |
-| POST   | \`/api/v1/auth/reset-password\` | Reset password       | No            |
+| POST   | `/api/v1/auth/register` | Register new user            | No            |
+| POST   | `/api/v1/auth/login`    | User login                   | No            |
+| POST   | `/api/v1/auth/logout`   | User logout                  | Yes           |
+| POST   | `/api/v1/auth/refresh`  | Refresh access token         | No            |
+| POST   | `/api/v1/auth/forgot-password` | Request password reset | No    |
+| POST   | `/api/v1/auth/reset-password` | Reset password       | No            |
 
 ### Users
 
 | Method | Endpoint              | Description                    | Auth Required |
 |:-------|:---------------------|:-------------------------------|:--------------|
-| GET    | \`/api/v1/users\`        | List all users (paginated)   | Yes (Admin)   |
-| GET    | \`/api/v1/users/:id\`    | Get user by ID               | Yes           |
-| PUT    | \`/api/v1/users/:id\`    | Update user profile          | Yes (Owner)   |
-| DELETE | \`/api/v1/users/:id\`    | Delete user account          | Yes (Owner)   |
-| GET    | \`/api/v1/users/me\`     | Get current user profile     | Yes           |
+| GET    | `/api/v1/users`        | List all users (paginated)   | Yes (Admin)   |
+| GET    | `/api/v1/users/:id`    | Get user by ID               | Yes           |
+| PUT    | `/api/v1/users/:id`    | Update user profile          | Yes (Owner)   |
+| DELETE | `/api/v1/users/:id`    | Delete user account          | Yes (Owner)   |
+| GET    | `/api/v1/users/me`     | Get current user profile     | Yes           |
 
 ### Posts
 
 | Method | Endpoint              | Description                    | Auth Required |
 |:-------|:---------------------|:-------------------------------|:--------------|
-| GET    | \`/api/v1/posts\`        | List all posts               | No            |
-| GET    | \`/api/v1/posts/:id\`    | Get post by ID               | No            |
-| POST   | \`/api/v1/posts\`        | Create new post              | Yes           |
-| PUT    | \`/api/v1/posts/:id\`    | Update post                  | Yes (Owner)   |
-| DELETE | \`/api/v1/posts/:id\`    | Delete post                  | Yes (Owner)   |
-| POST   | \`/api/v1/posts/:id/like\` | Like a post                | Yes           |
+| GET    | `/api/v1/posts`        | List all posts               | No            |
+| GET    | `/api/v1/posts/:id`    | Get post by ID               | No            |
+| POST   | `/api/v1/posts`        | Create new post              | Yes           |
+| PUT    | `/api/v1/posts/:id`    | Update post                  | Yes (Owner)   |
+| DELETE | `/api/v1/posts/:id`    | Delete post                  | Yes (Owner)   |
+| POST   | `/api/v1/posts/:id/like` | Like a post                | Yes           |
 
 ### Files
 
 | Method | Endpoint              | Description                    | Auth Required |
 |:-------|:---------------------|:-------------------------------|:--------------|
-| POST   | \`/api/v1/files/upload\` | Upload file to S3            | Yes           |
-| GET    | \`/api/v1/files/:id\`    | Get file metadata            | Yes           |
-| DELETE | \`/api/v1/files/:id\`    | Delete file                  | Yes (Owner)   |
+| POST   | `/api/v1/files/upload` | Upload file to S3            | Yes           |
+| GET    | `/api/v1/files/:id`    | Get file metadata            | Yes           |
+| DELETE | `/api/v1/files/:id`    | Delete file                  | Yes (Owner)   |
 
 ### Health & Monitoring
 
 | Method | Endpoint          | Description                    | Auth Required |
 |:-------|:-----------------|:-------------------------------|:--------------|
-| GET    | \`/health\`         | Basic health check           | No            |
-| GET    | \`/health/ready\`   | Readiness probe              | No            |
-| GET    | \`/health/live\`    | Liveness probe               | No            |
-| GET    | \`/metrics\`        | Prometheus metrics           | No            |
+| GET    | `/health`         | Basic health check           | No            |
+| GET    | `/health/ready`   | Readiness probe              | No            |
+| GET    | `/health/live`    | Liveness probe               | No            |
+| GET    | `/metrics`        | Prometheus metrics           | No            |
 
 ## 🔍 Example Requests
 
 ### Register a New User
 
-\`\`\`bash
+```bash
 curl -X POST http://localhost:3000/api/v1/auth/register \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -298,10 +298,10 @@ curl -X POST http://localhost:3000/api/v1/auth/register \\
     "password": "SecurePass123!",
     "name": "John Doe"
   }'
-\`\`\`
+```
 
 Response:
-\`\`\`json
+```json
 {
   "success": true,
   "data": {
@@ -316,22 +316,22 @@ Response:
     }
   }
 }
-\`\`\`
+```
 
 ### Login
 
-\`\`\`bash
+```bash
 curl -X POST http://localhost:3000/api/v1/auth/login \\
   -H "Content-Type: application/json" \\
   -d '{
     "email": "user@example.com",
     "password": "SecurePass123!"
   }'
-\`\`\`
+```
 
 ### Create a Post (Authenticated)
 
-\`\`\`bash
+```bash
 curl -X POST http://localhost:3000/api/v1/posts \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
@@ -340,25 +340,25 @@ curl -X POST http://localhost:3000/api/v1/posts \\
     "content": "This is the content of my post",
     "tags": ["tutorial", "api"]
   }'
-\`\`\`
+```
 
 ### Get Posts with Pagination
 
-\`\`\`bash
+```bash
 curl -X GET "http://localhost:3000/api/v1/posts?page=1&limit=10&sort=createdAt:desc"
-\`\`\`
+```
 
 ## 🧪 Testing
 
 ### Run All Tests
 
-\`\`\`bash
+```bash
 npm test
-\`\`\`
+```
 
 ### Run Specific Test Suites
 
-\`\`\`bash
+```bash
 # Unit tests only
 npm run test:unit
 
@@ -370,17 +370,17 @@ npm run test:e2e
 
 # With coverage
 npm run test:coverage
-\`\`\`
+```
 
 ### Watch Mode (Development)
 
-\`\`\`bash
+```bash
 npm run test:watch
-\`\`\`
+```
 
 ### Test Example
 
-\`\`\`typescript
+```typescript
 describe('POST /api/v1/auth/register', () => {
   it('should create a new user successfully', async () => {
     const response = await request(app)
@@ -396,13 +396,13 @@ describe('POST /api/v1/auth/register', () => {
     expect(response.body.data.tokens).toHaveProperty('accessToken');
   });
 });
-\`\`\`
+```
 
 ## 🐳 Docker Deployment
 
 ### Build and Run with Docker Compose
 
-\`\`\`bash
+```bash
 # Build and start all services
 docker-compose up -d
 
@@ -414,11 +414,11 @@ docker-compose down
 
 # Rebuild after changes
 docker-compose up -d --build
-\`\`\`
+```
 
 ### Production Docker Build
 
-\`\`\`bash
+```bash
 # Build production image
 docker build -t myapi:latest -f docker/Dockerfile .
 
@@ -428,13 +428,13 @@ docker run -d \\
   -p 3000:3000 \\
   --env-file .env.production \\
   myapi:latest
-\`\`\`
+```
 
 ## 🚀 Deployment
 
 ### AWS Elastic Beanstalk
 
-\`\`\`bash
+```bash
 # Initialize EB
 eb init -p node.js-20 my-api
 
@@ -443,18 +443,18 @@ eb create production
 
 # Deploy
 eb deploy
-\`\`\`
+```
 
 ### DigitalOcean App Platform
 
 1. Connect your GitHub repository
 2. Configure environment variables
-3. Set build command: \`npm run build\`
-4. Set run command: \`npm start\`
+3. Set build command: `npm run build`
+4. Set run command: `npm start`
 
 ### Heroku
 
-\`\`\`bash
+```bash
 # Create app
 heroku create myapi
 
@@ -466,11 +466,11 @@ git push heroku main
 
 # Run migrations
 heroku run npm run migrate
-\`\`\`
+```
 
 ### VPS (Ubuntu 22.04)
 
-\`\`\`bash
+```bash
 # Install dependencies
 sudo apt update
 sudo apt install -y nodejs npm postgresql redis nginx
@@ -487,13 +487,13 @@ pm2 save
 
 # Configure Nginx reverse proxy
 sudo nano /etc/nginx/sites-available/myapi
-\`\`\`
+```
 
 ## 📊 Monitoring & Logging
 
 ### Health Checks
 
-\`\`\`bash
+```bash
 # Basic health
 curl http://localhost:3000/health
 
@@ -502,11 +502,11 @@ curl http://localhost:3000/health/ready
 
 # Liveness probe
 curl http://localhost:3000/health/live
-\`\`\`
+```
 
 ### Logs
 
-\`\`\`bash
+```bash
 # Development logs
 npm run dev
 
@@ -515,7 +515,7 @@ pm2 logs myapi
 
 # Docker logs
 docker-compose logs -f api
-\`\`\`
+```
 
 ### Metrics
 
@@ -538,15 +538,15 @@ Access Prometheus metrics at: http://localhost:3000/metrics
 
 ### Security Best Practices
 
-1. **Never commit \`.env\` files**
+1. **Never commit `.env` files**
 2. **Rotate secrets regularly**
 3. **Use HTTPS in production**
 4. **Enable 2FA for admin accounts**
-5. **Regular dependency audits**: \`npm audit\`
+5. **Regular dependency audits**: `npm audit`
 
 ## 🛠 Development Commands
 
-\`\`\`bash
+```bash
 # Development
 npm run dev              # Start dev server with hot reload
 npm run dev:debug        # Start with Node debugger
@@ -573,7 +573,7 @@ npm run test:coverage    # Generate coverage report
 
 # Production
 npm start                # Start production server
-\`\`\`
+```
 
 ## 📚 Additional Documentation
 
